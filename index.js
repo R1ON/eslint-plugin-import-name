@@ -162,9 +162,9 @@ module.exports = {
   },
   configs: {
     recommended: {
-      plugins: ['custom-rules'],
+      plugins: ['import-name'],
       rules: {
-        'custom-rules/all-imports-name': ['error', { classnames: 'classNames' }],
+        'import-name/all-imports-name': ['error', { classnames: 'classNames' }],
       },
     },
   },
