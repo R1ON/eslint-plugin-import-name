@@ -1,6 +1,7 @@
 {
+  "version": "1.1.4",
   "name": "eslint-plugin-import-name",
-  "version": "1.1.3",
+  "description": "Eslint plugin to restrict the name of imports. Works with default and CommonJS imports.",
   "main": "index.js",
   "author": "R1ON <r.maximov2012@yandex.ru>",
   "license": "MIT",
