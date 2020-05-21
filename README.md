@@ -1,4 +1,4 @@
-#How to use:
+# How to use:
 
 Add to your `.eslintrc`:
 ```
@@ -18,7 +18,7 @@ Or create your own rule for your imports:
 }
 ```
 
-##Rules:
+# Rules:
 
 - **default-import-name** - allows you to create a constant name for default import.
 ```
