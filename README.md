@@ -1,6 +1,8 @@
 # eslint-plugin-import-name
 [![npm](https://img.shields.io/npm/v/eslint-plugin-import-name.svg)](https://www.npmjs.com/package/eslint-plugin-import-name)
 
+Eslint plugin to restrict import name. Works with default and CommonJS imports.
+
 ## Install
 yarn
 ```
