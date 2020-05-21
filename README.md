@@ -3,15 +3,13 @@
 
 Eslint plugin to restrict import name. Works with default and CommonJS imports.
 
-## Install
-yarn
+## Installation
 ```
-yarn add eslint-plugin-import-name --dev
-```
+yarn add -D eslint-plugin-import-name
 
-npm
-```
-npm install eslint-plugin-import-name --dev
+or
+
+npm install -D eslint-plugin-import-name
 ```
 
 ## How to use:
