@@ -1,3 +1,15 @@
+# Install
+
+yarn
+```
+yarn add eslint-plugin-import-name --dev
+```
+
+npm
+```
+npm install eslint-plugin-import-name --dev
+```
+
 # How to use:
 
 Add to your `.eslintrc`:
