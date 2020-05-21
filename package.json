@@ -1,0 +1,21 @@
+{
+  "name": "eslint-plugin-import-name",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "R1ON <r.maximov2012@yandex.ru>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/R1ON/eslint-plugin-import-name"
+  },
+  "homepage": "https://github.com/R1ON/eslint-plugin-import-name",
+  "keywords": [
+    "eslint",
+    "plugin",
+    "rename",
+    "import",
+    "restrict",
+    "name",
+    "default"
+  ]
+}
