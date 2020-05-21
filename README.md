@@ -1,5 +1,7 @@
-# Install
+# eslint-plugin-import-name
+[![npm](https://img.shields.io/npm/v/eslint-plugin-import-name.svg)](https://www.npmjs.com/package/eslint-plugin-import-name)
 
+## Install
 yarn
 ```
 yarn add eslint-plugin-import-name --dev
@@ -10,8 +12,7 @@ npm
 npm install eslint-plugin-import-name --dev
 ```
 
-# How to use:
-
+## How to use:
 Add to your `.eslintrc`:
 ```
 "extends": [
@@ -34,7 +35,7 @@ Or create your own rule for your imports:
 }
 ```
 
-# Rules:
+## Rules:
 
 - **all-imports-name** - combines the two previous rules together.
 ```
