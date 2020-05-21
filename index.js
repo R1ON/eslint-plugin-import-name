@@ -5,29 +5,38 @@ const { meta, parseOptions, createMessage } = require('./utils');
 function importDeclaration(context, node, importNames, options) {
   const newImportNames = new Map(importNames);
 
-  if (node.source && node.source.value) {
+  if (
+    node.source
+    && node.source.value
+    && node.specifiers
+  ) {
     const correctImportName = options.get(node.source.value);
 
-    correctImportName && node.specifiers && node.specifiers.forEach((specifier) => {
-      if (
-        specifier.type === 'ImportDefaultSpecifier'
-        && specifier.local
-        && specifier.local.name
-        && specifier.local.name !== correctImportName
-      ) {
-        newImportNames.set(specifier.local.name, node.source.value);
+    if (correctImportName) {
+      for (const specifier of node.specifiers) {
+        if (
+          specifier.type === 'ImportDefaultSpecifier'
+          && specifier.local
+          && specifier.local.name
+          && specifier.local.name !== correctImportName
+        ) {
+          const currentImportName = specifier.local.name;
+          const packageName = node.source.value;
 
-        context.report({
-          loc: specifier.loc,
-          message: createMessage(
-            specifier.local.name,
-            correctImportName,
-            node.source.value,
-          ),
-          fix: (fixer) => fixer.replaceText(specifier, correctImportName),
-        });
+          newImportNames.set(currentImportName, packageName);
+
+          context.report({
+            loc: specifier.loc,
+            message: createMessage(
+              currentImportName,
+              correctImportName,
+              packageName,
+            ),
+            fix: (fixer) => fixer.replaceText(specifier, correctImportName),
+          });
+        }
       }
-    });
+    }
   }
 
   return newImportNames;
@@ -37,20 +46,19 @@ function variableDeclaration(context, node, importNames, options) {
   const newImportNames = new Map(importNames);
 
   if (node.declarations) {
-    node.declarations.forEach((declaration) => {
-      if (declaration && declaration.init && declaration.id) {
+    for (const declaration of node.declarations) {
+      if (declaration.init && declaration.id) {
         const init = declaration.init;
         const currentImportName = declaration.id.name;
 
         if (
           init
-          && init.type === 'CallExpression'
           && init.callee
-          && init.callee.name
           && init.callee.name === 'require'
+          && init.type === 'CallExpression'
+          && currentImportName
         ) {
           const packageName = init.arguments[0].value;
-
           const correctImportName = options.get(packageName);
 
           if (correctImportName && currentImportName !== correctImportName) {
@@ -66,7 +74,7 @@ function variableDeclaration(context, node, importNames, options) {
           }
         }
       }
-    });
+    }
   }
 
   return newImportNames;
