@@ -4,7 +4,7 @@ const meta = (urlLink) => ({
     description: 'disallow invalid import name',
     category: 'Coding Conventions',
     recommended: true,
-    url: `https://github.com/R1ON/eslint-plugin-import-name${urlLink}`,
+    url: `https://github.com/R1ON/eslint-plugin-import-name/blob/master${urlLink}`,
   },
   schema: [
     {

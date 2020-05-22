@@ -6,8 +6,8 @@ Eslint plugin to restrict import name. Works with default and CommonJS imports.
 
 ### all-imports-name
 Combines two rules together (
-[default-import-name](https://github.com/R1ON/eslint-plugin-import-name/docs/default-import-name.md),
-[common-import-name](https://github.com/R1ON/eslint-plugin-import-name/docs/common-import-name.md)
+[default-import-name](https://github.com/R1ON/eslint-plugin-import-name/blob/master/docs/default-import-name.md),
+[common-import-name](https://github.com/R1ON/eslint-plugin-import-name/blob/master/docs/common-import-name.md)
 ).
 
 ```
