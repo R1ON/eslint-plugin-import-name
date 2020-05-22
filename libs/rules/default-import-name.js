@@ -1,6 +1,11 @@
 'use strict';
 
-const { meta, parseOptions, importDeclaration, callExpression } = require('../utils');
+const {
+  meta,
+  parseOptions,
+  importDeclaration,
+  callExpression,
+} = require('../utils');
 
 module.exports = {
   meta: meta('/docs/default-import-name.md'),

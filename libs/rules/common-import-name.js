@@ -3,7 +3,6 @@
 const {
   meta,
   parseOptions,
-  importDeclaration,
   variableDeclaration,
   callExpression,
 } = require('../utils');
@@ -15,10 +14,6 @@ module.exports = {
     const options = parseOptions(context);
 
     return {
-      ImportDeclaration: (node) => {
-        importNames = importDeclaration(context, node, importNames, options);
-      },
-
       VariableDeclaration: (node) => {
         importNames = variableDeclaration(context, node, importNames, options);
       },
