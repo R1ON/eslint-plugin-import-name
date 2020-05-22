@@ -1,6 +1,45 @@
-'use strict';
+const meta = (urlLink) => ({
+  type: 'problem',
+  docs: {
+    description: 'disallow invalid import name',
+    category: 'Coding Conventions',
+    recommended: true,
+    url: `https://github.com/R1ON/eslint-plugin-import-name${urlLink}`,
+  },
+  schema: [
+    {
+      type: 'object',
+      minProperties: 1,
+      additionalProperties: true,
+    },
+  ],
+  fixable: 'code',
+});
 
-const { meta, parseOptions, createMessage } = require('./utils');
+function parseOptions(context) {
+  const options = new Map();
+
+  if (context.options.length > 0) {
+    const imports = context.options[0];
+    const importsKeys = Object.keys(imports);
+
+    if (importsKeys.length > 0) {
+      Object.keys(imports).forEach((importKey) => {
+        options.set(importKey, imports[importKey]);
+      });
+    }
+  }
+
+  return options;
+}
+
+function createMessage(currentImportName, correctImportName, packageName) {
+  if (!packageName) {
+    return `Rename "${currentImportName}" to "${correctImportName}".`;
+  }
+
+  return `Importing "${packageName}" as "${currentImportName}" is not allowed, use "${correctImportName}" instead.`;
+}
 
 function importDeclaration(context, node, importNames, options) {
   const newImportNames = new Map(importNames);
@@ -103,69 +142,9 @@ function callExpression(context, node, importNames, options) {
 }
 
 module.exports = {
-  rules: {
-    'default-import-name': {
-      meta,
-      create: (context) => {
-        let importNames = new Map();
-        const options = parseOptions(context);
-
-        return {
-          ImportDeclaration: (node) => {
-            importNames = importDeclaration(context, node, importNames, options);
-          },
-
-          CallExpression: (node) => {
-            callExpression(context, node, importNames, options);
-          }
-        };
-      },
-    },
-    'common-import-name': {
-      meta,
-      create: (context) => {
-        let importNames = new Map();
-        const options = parseOptions(context);
-
-        return {
-          VariableDeclaration: (node) => {
-            importNames = variableDeclaration(context, node, importNames, options);
-          },
-
-          CallExpression: (node) => {
-            callExpression(context, node, importNames, options);
-          }
-        };
-      }
-    },
-    'all-imports-name': {
-      meta,
-      create: (context) => {
-        let importNames = new Map();
-        const options = parseOptions(context);
-
-        return {
-          ImportDeclaration: (node) => {
-            importNames = importDeclaration(context, node, importNames, options);
-          },
-
-          VariableDeclaration: (node) => {
-            importNames = variableDeclaration(context, node, importNames, options);
-          },
-
-          CallExpression: (node) => {
-            callExpression(context, node, importNames, options);
-          }
-        };
-      }
-    },
-  },
-  configs: {
-    recommended: {
-      plugins: ['import-name'],
-      rules: {
-        'import-name/all-imports-name': ['error', { classnames: 'classNames' }],
-      },
-    },
-  },
+  meta,
+  parseOptions,
+  importDeclaration,
+  variableDeclaration,
+  callExpression,
 };

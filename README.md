@@ -54,7 +54,7 @@ Or create your own rule for your imports:
 
 Bad: ❌
 import cx from 'classnames';
-import propTypes from 'prop-types';
+import proptypes from 'prop-types';
 
 Good: ✅
 import classNames from 'classnames';
@@ -70,7 +70,7 @@ import PropTypes from 'prop-types';
 
 Bad: ❌
 const cx = require('classnames');
-const propTypes = require('prop-types');
+const proptypes = require('prop-types');
 
 Good: ✅
 const classNames = require('classnames');
