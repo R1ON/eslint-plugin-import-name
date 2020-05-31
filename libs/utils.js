@@ -1,3 +1,5 @@
+'use strict';
+
 const meta = (urlLink) => ({
   type: 'problem',
   docs: {
